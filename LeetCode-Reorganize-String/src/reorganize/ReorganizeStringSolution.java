@@ -1,7 +1,66 @@
 package reorganize;
 
+import java.util.HashMap;
+import java.util.PriorityQueue;
+
 public class ReorganizeStringSolution {
     public String reorganizeString(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        // Count the number of times each character appear
+        for(char letter : s.toCharArray()){
+            map.put(letter, map.getOrDefault(letter, 0) + 1);
+        }
+        
+        // (a,b) -> map.get(b) - map.get(a) this will make it into a maxheap instead of min heap
+        PriorityQueue<Character> maxHeap = new PriorityQueue<>((a,b) -> map.get(b) - map.get(a));
+        
+        // Add all the keys based on their number of counts
+        maxHeap.addAll(map.keySet());
+        
+        // Since adding string is really costly, stringbuilder will be the best
+        StringBuilder sb = new StringBuilder();
+        
+        // While there are at least two character to place
+        while(maxHeap.size() > 1){
+        	// Will get the root of the max heap (first biggest)
+            char firstBiggest = maxHeap.remove();
+            
+            // Will get the root of the max heap (second biggest)
+            char secondBiggest = maxHeap.remove();
+            
+            sb.append(firstBiggest);
+            sb.append(secondBiggest);
+            
+            map.put(firstBiggest, map.get(firstBiggest) - 1);
+            map.put(secondBiggest, map.get(secondBiggest) - 1);
+            
+            if(map.get(firstBiggest) > 0){
+                maxHeap.add(firstBiggest);
+            }
+            
+            if(map.get(secondBiggest) > 0){
+                maxHeap.add(secondBiggest);
+            }
+        }
+        
+        // There will be case like odd number of characters ex: aabc
+        // Or its just aaaaaaaa
+        if(!maxHeap.isEmpty()){
+            char lastWord = maxHeap.remove();
+            
+            // There could only be one left
+            if(map.get(lastWord) > 1){
+                return "";
+            }
+            
+            sb.append(lastWord);
+        }
+        
+        return sb.toString();
+    }
+	
+    public String reorganizeString2(String s) {
         // Return itself if length is 1 or 0 or if string is null
         if(s == null || s.length() < 2){
            return s; 
