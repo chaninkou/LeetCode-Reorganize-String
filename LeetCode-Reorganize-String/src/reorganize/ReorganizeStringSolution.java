@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class ReorganizeStringSolution {
+    // Using priority queue
     public String reorganizeString(String s) {
+    	// Keep count of how many counts per characters
         HashMap<Character, Integer> map = new HashMap<>();
         
         // Count the number of times each character appear
@@ -44,12 +46,12 @@ public class ReorganizeStringSolution {
             }
         }
         
-        // There will be case like odd number of characters ex: aabc
+        // There will be case like odd number of characters ex: aab
         // Or its just aaaaaaaa
         if(!maxHeap.isEmpty()){
             char lastWord = maxHeap.remove();
             
-            // There could only be one left
+            // There could only be one left or else it fail
             if(map.get(lastWord) > 1){
                 return "";
             }
@@ -130,6 +132,4 @@ public class ReorganizeStringSolution {
         
         return new String(ans);
     }
-    
-    // Using priority queue
 }
