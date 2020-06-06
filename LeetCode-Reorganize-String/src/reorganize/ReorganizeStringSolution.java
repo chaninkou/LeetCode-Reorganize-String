@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class ReorganizeStringSolution {
-    // Using priority queue
+    // Using priority queue with lamba
     public String reorganizeString(String s) {
     	// Keep count of how many counts per characters
         HashMap<Character, Integer> map = new HashMap<>();
