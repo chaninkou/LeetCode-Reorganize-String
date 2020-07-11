@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class ReorganizeStringSolution {
-    // Using priority queue with lamba
+    // Using priority queue with lambda
     public String reorganizeString(String s) {
     	// Keep count of how many counts per characters
         HashMap<Character, Integer> map = new HashMap<>();
@@ -28,7 +28,7 @@ public class ReorganizeStringSolution {
         	// Will get the root of the max heap (first biggest)
             char firstBiggest = maxHeap.remove();
             
-            // Will get the root of the max heap (second biggest)
+            // Will get the root of the max heap again (second biggest)
             char secondBiggest = maxHeap.remove();
             
             sb.append(firstBiggest);
@@ -62,6 +62,7 @@ public class ReorganizeStringSolution {
         return sb.toString();
     }
 	
+    // Without priority queue
     public String reorganizeString2(String s) {
         // Return itself if length is 1 or 0 or if string is null
         if(s == null || s.length() < 2){
