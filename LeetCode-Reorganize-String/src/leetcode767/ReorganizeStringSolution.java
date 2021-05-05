@@ -1,4 +1,4 @@
-package reorganize;
+package leetcode767;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
