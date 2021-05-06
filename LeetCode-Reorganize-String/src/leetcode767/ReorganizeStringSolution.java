@@ -62,7 +62,7 @@ public class ReorganizeStringSolution {
         return sb.toString();
     }
 	
-    // Without priority queue
+    // Bucket sort
     public String reorganizeString2(String s) {
         // Return itself if length is 1 or 0 or if string is null
         if(s == null || s.length() < 2){
