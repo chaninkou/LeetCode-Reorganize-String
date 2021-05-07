@@ -64,7 +64,7 @@ public class ReorganizeStringSolution {
 	
     // Bucket sort
     public String reorganizeString2(String s) {
-        // Return itself if length is 1 or 0 or if string is null
+        // Return original string if length is 1 or 0 or if string is null
         if(s == null || s.length() < 2){
            return s; 
         } 
